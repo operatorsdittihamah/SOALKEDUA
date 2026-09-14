@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Flower Adjectives Quest - Realistic Animal Edition</title>
+<title>Flower Adjectives Quest - Complete Vocab Edition</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap');
@@ -22,15 +22,13 @@ body {
     justify-content: center;
     align-items: center;
     color: #3e2723;
-    overflow: hidden;
+    overflow-x: hidden;
     position: relative;
 }
 
-/* =========================================
-   DEKORASI BACKGROUND (POHON, BUAH, BUNGA)
-========================================= */
+/* DEKORASI BACKGROUND */
 .garden-background {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     top: 0;
@@ -67,7 +65,6 @@ body {
 .cloud-1 { top: 8%; left: 5%; }
 .cloud-2 { top: 18%; left: 40%; transform: scale(0.7); }
 
-/* Hutan & Pohon Rindang */
 .tree-forest {
     position: absolute;
     bottom: 90px;
@@ -80,7 +77,6 @@ body {
     opacity: 0.95;
 }
 
-/* Buah-Buahan di Atas Pohon */
 .fruits-layer {
     position: absolute;
     bottom: 140px;
@@ -100,7 +96,6 @@ body {
     z-index: 3;
 }
 
-/* Bunga Melimpah */
 .flower-garden {
     position: absolute;
     bottom: 10px;
@@ -124,143 +119,204 @@ body {
     to { transform: rotate(6deg); }
 }
 
-/* =========================================
-   ANIMASI GERAK REALISTIS BINATANG
-========================================= */
+/* ANIMASI BINATANG */
 .walking-animal-wrapper {
     position: fixed;
-    z-index: 100; /* Paling depan melintasi kotak soal */
+    z-index: 100;
     pointer-events: none;
     display: none;
 }
-
 .walking-animal {
     font-size: 115px;
     filter: drop-shadow(0 12px 18px rgba(0,0,0,0.35));
     display: inline-block;
 }
-
-/* 1. Animasi Gerak Kepak Sayap Kupu-Kupu / Burung */
-.wing-flap {
-    animation: flap 0.25s ease-in-out infinite alternate;
-}
+.wing-flap { animation: flap 0.25s ease-in-out infinite alternate; }
 @keyframes flap {
     0% { transform: scaleX(1) scaleY(1) rotate(0deg); }
     100% { transform: scaleX(0.4) scaleY(1.1) rotate(12deg); }
 }
-
-/* 2. Animasi Langkah Kaki / Gerak Tubuh Macan, Kucing, dll */
-.limb-walk {
-    animation: walkLimb 0.35s ease-in-out infinite alternate;
-}
+.limb-walk { animation: walkLimb 0.35s ease-in-out infinite alternate; }
 @keyframes walkLimb {
     0% { transform: translateY(0) rotate(-4deg); }
     100% { transform: translateY(-12px) rotate(4deg); }
 }
-
-/* 3. Animasi Merayap Ular (Meliuk-liuk) */
-.snake-slither {
-    animation: slither 0.4s ease-in-out infinite alternate;
-}
+.snake-slither { animation: slither 0.4s ease-in-out infinite alternate; }
 @keyframes slither {
     0% { transform: scaleY(0.8) skewX(-12deg); }
     100% { transform: scaleY(1.1) skewX(12deg); }
 }
-
-/* Jalur Lintasan Layar */
-@keyframes moveLeftToRight {
-    0% { left: -160px; }
-    100% { left: 105vw; }
-}
-
-@keyframes moveRightToLeft {
-    0% { left: 105vw; transform: scaleX(-1); }
-    100% { left: -160px; transform: scaleX(-1); }
-}
-
-@keyframes moveTopToBottom {
-    0% { top: -160px; }
-    100% { top: 105vh; }
-}
+@keyframes moveLeftToRight { 0% { left: -160px; } 100% { left: 105vw; } }
+@keyframes moveRightToLeft { 0% { left: 105vw; transform: scaleX(-1); } 100% { left: -160px; transform: scaleX(-1); } }
+@keyframes moveTopToBottom { 0% { top: -160px; } 100% { top: 105vh; } }
 
 .animate-left-right { display: block; animation: moveLeftToRight linear forwards; }
 .animate-right-left { display: block; animation: moveRightToLeft linear forwards; }
 .animate-top-bottom { display: block; animation: moveTopToBottom linear forwards; }
 
-/* CELEBRATION */
 #celebrationContainer {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     pointer-events: none; z-index: 99; overflow: hidden;
 }
 .reward-item {
-    position: absolute; top: -50px;
-    animation: fall linear forwards;
+    position: absolute; top: -50px; animation: fall linear forwards;
 }
 @keyframes fall {
     0% { transform: translateY(0) rotate(0deg); opacity: 1; }
     100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
 }
 
-/* GAME CARD CONTAINER */
+/* MAIN CARD CONTAINER */
 .game-card {
     position: relative;
     z-index: 10;
-    background: rgba(255,255,255,0.95);
+    background: rgba(255, 255, 255, 0.96);
     backdrop-filter: blur(12px);
     border: 4px solid #aed581;
     box-shadow: 0 20px 40px rgba(62,39,35,0.25), inset 0 0 15px rgba(255,255,255,0.8);
     border-radius: 28px;
     padding: 25px;
-    width: 90%;
-    max-width: 480px;
+    width: 92%;
+    max-width: 650px;
     text-align: center;
     max-height: 94vh;
     overflow-y: auto;
+    margin: 20px auto;
 }
 
+.title {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+    color: #33691e;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0 white;
+}
+
+/* BUTTONS */
+.btn {
+    width: 100%;
+    padding: 14px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+.btn-start { background: linear-gradient(135deg, #66bb6a, #388e3c); color: white; box-shadow: 0 6px 16px rgba(56,142,60,0.3); }
+.btn-submit { background: linear-gradient(135deg, #8bc34a, #558b2f); color: white; box-shadow: 0 6px 16px rgba(85,139,47,0.3); }
+.btn-download { background: linear-gradient(135deg, #0288d1, #01579b); color: white; box-shadow: 0 6px 16px rgba(2,136,209,0.3); }
+.btn-back { background: #ffb74d; color: #3e2723; padding: 8px 14px; font-size: 13px; width: auto; margin-bottom: 0; }
+.btn:hover { transform: translateY(-2px); filter: brightness(1.05); }
+
+/* SCREEN VISIBILITY */
+.screen { display: none; }
+.active-screen { display: block; }
+
+/* KOSA KATA STYLES */
+.vocab-header {
+    background: #f1f8e9;
+    padding: 15px;
+    border-radius: 18px;
+    border: 2px solid #c5e1a5;
+    margin-bottom: 15px;
+}
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+.vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+    text-align: left;
+    margin-top: 15px;
+}
+.vocab-card {
+    background: #ffffff;
+    border: 2px solid #c5e1a5;
+    border-radius: 14px;
+    padding: 10px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.04);
+}
+.vocab-info { flex-grow: 1; }
+.vocab-word { font-weight: 700; color: #2e7d32; font-size: 15px; }
+.vocab-ipa { font-size: 12px; color: #757575; font-style: italic; }
+.vocab-meaning { font-size: 13px; color: #3e2723; margin-top: 2px; }
+
+/* COLOR CODED TAGS UNTUK JENIS KATA */
+.vocab-tag { font-size: 10px; padding: 2px 6px; border-radius: 6px; display: inline-block; font-weight: 600; margin-left: 6px; }
+.tag-noun { background: #e3f2fd; color: #1565c0; }      /* Kata Benda - Biru */
+.tag-verb { background: #fff3e0; color: #e65100; }      /* Kata Kerja - Oranye */
+.tag-adjective { background: #e8f5e9; color: #2e7d32; } /* Kata Sifat - Hijau */
+.tag-adverb { background: #f3e5f5; color: #7b1fa2; }    /* Kata Keterangan - Ungu */
+
+.audio-btn {
+    background: #81c784;
+    border: none;
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+    flex-shrink: 0;
+}
+.audio-btn:hover { background: #66bb6a; transform: scale(1.1); }
+
+/* QUIZ STYLES */
 .header-section {
     display: flex; align-items: center; justify-content: space-between;
     background: #f1f8e9; padding: 10px 18px; border-radius: 18px;
     margin-bottom: 15px; border: 2px solid #c5e1a5;
 }
 .avatar {
-    width: 55px; height: 55px; border-radius: 50%;
+    width: 50px; height: 50px; border-radius: 50%;
     background: linear-gradient(135deg, #81c784, #66bb6a);
     display: flex; align-items: center; justify-content: center;
-    font-size: 28px; box-shadow: 0 4px 10px rgba(76,175,80,0.4); border: 3px solid white;
+    font-size: 26px; box-shadow: 0 4px 10px rgba(76,175,80,0.4); border: 2px solid white;
 }
 .stats-group { text-align: right; font-family: 'Fredoka', sans-serif; }
-.stat-item { font-size: 13px; color: #558b2f; font-weight: 600; }
-.stat-value { color: #33691e; font-weight: 700; font-size: 18px; }
-
-.title {
-    font-family: 'Fredoka', sans-serif; font-size: 26px;
-    letter-spacing: 1px; color: #558b2f; margin-bottom: 10px;
-    text-transform: uppercase; text-shadow: 1px 1px 0 white;
-}
-.progress-text {
-    font-family: 'Fredoka', sans-serif; font-size: 15px;
-    color: #689f38; font-weight: 600; margin-bottom: 12px; letter-spacing: 1px;
-}
+.stat-item { font-size: 12px; color: #558b2f; font-weight: 600; }
+.stat-value { color: #33691e; font-weight: 700; font-size: 16px; }
 
 .question-box {
     background: #f9fff5; border-radius: 18px; padding: 15px;
     margin-bottom: 15px; border: 2px solid #dcedc8;
-    box-shadow: inset 0 2px 6px rgba(0,0,0,0.03); min-height: 110px;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.03); min-height: 100px;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
 }
 .question-img {
-    max-width: 100%; max-height: 160px; border-radius: 12px;
+    max-width: 100%; max-height: 150px; border-radius: 12px;
     margin-bottom: 10px; border: 3px solid white; box-shadow: 0 4px 8px rgba(0,0,0,0.1); object-fit: cover;
 }
-.question { font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 700; color: #3e2723; line-height: 1.4; }
+.question { font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; color: #3e2723; line-height: 1.4; }
 
-.options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px; }
+.options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
 .option-btn {
     background: white; border: 2px solid #aed581; border-radius: 14px;
     padding: 12px 8px; color: #558b2f; font-family: 'Fredoka', sans-serif;
-    font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.2s ease;
+    font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s ease;
     text-align: center; outline: none; box-shadow: 0 3px 6px rgba(0,0,0,0.05);
 }
 .option-btn:hover { background: #f1f8e9; border-color: #7cb342; transform: translateY(-2px); }
@@ -269,42 +325,44 @@ body {
 .select-box {
     width: 100%; padding: 14px; font-size: 16px; font-family: 'Fredoka', sans-serif;
     text-align: center; border: 2px solid #aed581; border-radius: 14px;
-    background: white; color: #3e2723; outline: none; margin-bottom: 20px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    background: white; color: #3e2723; outline: none; margin-bottom: 15px;
 }
 
-.btn {
-    width: 100%; padding: 14px; font-family: 'Fredoka', sans-serif; font-size: 18px;
-    font-weight: bold; border: none; border-radius: 14px; cursor: pointer;
-    text-transform: uppercase; transition: all 0.3s ease; letter-spacing: 1px;
-}
-.btn-submit { background: linear-gradient(135deg, #8bc34a, #558b2f); color: white; box-shadow: 0 6px 16px rgba(85,139,47,0.3); }
-.btn-submit:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(85,139,47,0.4); }
-.btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
-.btn-start { background: linear-gradient(135deg, #66bb6a, #388e3c); color: white; box-shadow: 0 6px 16px rgba(56,142,60,0.3); }
-
-.feedback { margin-top: 10px; font-weight: 700; min-height: 24px; font-size: 16px; font-family: 'Fredoka', sans-serif; }
+.feedback { margin-top: 10px; font-weight: 700; min-height: 24px; font-size: 15px; font-family: 'Fredoka', sans-serif; }
 .feedback.correct { color: #2e7d32; }
 .feedback.wrong { color: #c62828; }
 
-.screen { display: none; }
-.active-screen { display: block; }
+.matching-container { width: 100%; display: flex; flex-direction: column; gap: 8px; }
+.matching-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; align-items: center; }
+.matching-indonesia { background: #f1f8e9; border: 2px solid #aed581; border-radius: 12px; padding: 8px; font-family: 'Fredoka', sans-serif; font-weight: 600; color: #558b2f; }
+.matching-select { width: 100%; padding: 8px; border: 2px solid #aed581; border-radius: 12px; background: white; color: #3e2723; font-family: 'Fredoka', sans-serif; font-size: 13px; outline: none; }
 
 .final-score { font-family: 'Fredoka', sans-serif; font-size: 55px; color: #558b2f; text-shadow: 2px 2px 0 #dcedc8; margin: 10px 0; }
-.result-details { font-size: 16px; color: #3e2723; margin-bottom: 20px; line-height: 1.6; }
-.saving-status { font-size: 14px; color: #558b2f; margin-top: 10px; font-weight: bold; }
 
-.matching-container { width: 100%; display: flex; flex-direction: column; gap: 10px; margin-top: 5px; }
-.matching-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; align-items: center; }
-.matching-indonesia { background: #f1f8e9; border: 2px solid #aed581; border-radius: 12px; padding: 10px 8px; font-family: 'Fredoka', sans-serif; font-weight: 600; color: #558b2f; }
-.matching-select { width: 100%; padding: 10px 6px; border: 2px solid #aed581; border-radius: 12px; background: white; color: #3e2723; font-family: 'Fredoka', sans-serif; font-size: 14px; outline: none; cursor: pointer; }
-
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    20%, 60% { transform: translateX(-10px); }
-    40%, 80% { transform: translateX(10px); }
+/* CETAK / PRINT STYLES */
+@media print {
+    body { background: white !important; color: black !important; }
+    .garden-background, .walking-animal-wrapper, #celebrationContainer, .btn, .audio-btn, .btn-back { display: none !important; }
+    .game-card { border: none !important; box-shadow: none !important; max-width: 100% !important; width: 100% !important; max-height: none !important; overflow: visible !important; }
+    .screen { display: block !important; }
+    #loginScreen, #quizScreen, #resultScreen { display: none !important; }
+    #vocabScreen { display: block !important; }
+    
+    .print-section { display: block !important; page-break-before: always; }
+    .vocab-grid { grid-template-columns: 1fr 1fr !important; }
+    
+    .print-options-list {
+        list-style: none;
+        padding-left: 0;
+        margin-top: 5px;
+    }
+    .print-options-list li {
+        margin-bottom: 4px;
+        font-weight: normal;
+    }
 }
-.shake { animation: shake 0.4s ease-in-out; }
+
+.print-section { display: none; }
 </style>
 </head>
 
@@ -319,21 +377,14 @@ body {
     <div class="sun"></div>
     <div class="cloud cloud-1"></div>
     <div class="cloud cloud-2"></div>
-    
-    <!-- Hutan Pepohonan Rindang -->
     <div class="tree-forest">
         <span>🌳</span><span>🌲</span><span>🌴</span><span>🌳</span>
         <span>🌲</span><span>🌳</span><span>🌴</span><span>🌳</span>
     </div>
-
-    <!-- Buah-Buahan Lezat -->
     <div class="fruits-layer">
         <span>🍎</span><span>🍊</span><span>🍋</span><span>🍇</span><span>🍓</span><span>🍎</span>
     </div>
-
     <div class="grass"></div>
-
-    <!-- Taman Bunga Beranekaragam -->
     <div class="flower-garden">
         <span class="flower">🌷</span><span class="flower">🌻</span><span class="flower">🌹</span>
         <span class="flower">🌼</span><span class="flower">🌸</span><span class="flower">🌺</span>
@@ -346,11 +397,29 @@ body {
 
 <div class="game-card" id="gameCard">
 
-    <!-- LOGIN SCREEN -->
-    <div id="loginScreen" class="screen active-screen">
-        <div class="avatar" style="margin:0 auto 15px auto; width:75px; height:75px; font-size:40px;">🌸</div>
-        <h1 class="title">FLOWER ADJECTIVES</h1>
-        <p style="color:#558b2f; margin-bottom:20px; font-size:14px; font-weight:600;">Pilih namamu dan mulai petualangan di taman bunga!</p>
+    <!-- 1. HALAMAN KOSA-KATA (VOCABULARY SCREEN) -->
+    <div id="vocabScreen" class="screen active-screen">
+        <div class="vocab-header">
+            <h1 class="title">SILAHKAN HAFALKAN TERLEBIH DAHULU KOSA-KATA BERIKUT INI</h1>
+            <p style="font-size: 13px; color: #558b2f; margin-bottom: 10px;">Pelajari kata benda (Noun), kata kerja (Verb), kata keterangan (Adverb), & kata sifat (Adjective) sebelum bermain!</p>
+            
+            <div class="action-buttons">
+                <button type="button" class="btn btn-start" onclick="showLoginScreen()">LANJUT KE SOAL ATAU GAME 🚀</button>
+                <button type="button" class="btn btn-download" onclick="window.print()">📥 CETAK / DOWNLOAD PDF (KOSA KATA & SOAL)</button>
+            </div>
+        </div>
+
+        <div class="vocab-grid" id="vocabGrid">
+            <!-- Diisi otomatis oleh JavaScript -->
+        </div>
+    </div>
+
+    <!-- 2. LOGIN SCREEN -->
+    <div id="loginScreen" class="screen">
+        <button type="button" class="btn btn-back" onclick="showVocabScreen()">📖 Lihat Kosa Kata</button>
+        <div class="avatar" style="margin:15px auto 15px auto; width:75px; height:75px; font-size:40px;">🌸</div>
+        <h1 class="title">FLOWER ADJECTIVES QUEST</h1>
+        <p style="color:#558b2f; margin-bottom:20px; font-size:14px; font-weight:600;">Pilih namamu dan mulai petualangan!</p>
         
         <form id="loginForm" onsubmit="startGame(event)">
             <select id="studentSelect" class="select-box" required>
@@ -361,8 +430,13 @@ body {
         <div id="loginFeedback" style="margin-top:10px; font-size:13px; color:#c62828;"></div>
     </div>
 
-    <!-- QUIZ SCREEN -->
+    <!-- 3. QUIZ SCREEN -->
     <div id="quizScreen" class="screen">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <button type="button" class="btn btn-back" onclick="showVocabScreen()">📖 Lihat Kosa Kata</button>
+            <div class="progress-text" id="progressText" style="margin-bottom:0;">SOAL 1 DARI 20</div>
+        </div>
+
         <div class="header-section">
             <div class="avatar" id="avatarIcon">🌸</div>
             <div class="stats-group">
@@ -370,7 +444,6 @@ body {
                 <div class="stat-item">SKOR: <span class="stat-value" id="score">0</span> / 100</div>
             </div>
         </div>
-        <div class="progress-text" id="progressText">SOAL 1 DARI 20</div>
         
         <div class="question-box">
             <img id="questionImage" class="question-img" src="" alt="Gambar Soal" style="display:none;">
@@ -384,7 +457,7 @@ body {
         <div class="feedback" id="feedbackText"></div>
     </div>
 
-    <!-- RESULT SCREEN -->
+    <!-- 4. RESULT SCREEN -->
     <div id="resultScreen" class="screen">
         <div class="avatar" id="finalAvatar" style="margin:0 auto 15px auto; width:80px; height:80px; font-size:45px;">🏆</div>
         <h1 class="title">MISI SELESAI!</h1>
@@ -392,13 +465,109 @@ body {
         <div class="final-score" id="finalScore">0</div>
         <div class="result-details" id="resultDetails"></div>
         <div class="saving-status" id="savingStatus">💾 Menyimpan skor</div>
+        <button type="button" class="btn btn-start" onclick="showVocabScreen()" style="margin-top: 15px;">Kembali ke Halaman Utama 🏠</button>
     </div>
+
+    <!-- PRINT SECTION (KHUSUS TAMPILAN CETAK PDF) -->
+    <div class="print-section" id="printSection">
+        <h2 style="text-align: center; margin-top: 30px; margin-bottom: 20px; color: #33691e;">LEMBAR SOAL LATIHAN</h2>
+        <div id="printQuestionsList"></div>
+    </div>
+
 </div>
 
 <script>
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyCU4vFsCSdKGHKyAaPTGcwh-CbEoAwLzB0ZeK4GHOGdEetypgYox-VFg_wwpIVtXtX7Q/exec";
 const TOTAL_QUESTIONS = 20;
 const POINTS_PER_QUESTION = 5;
+
+// DATABANK KOSA KATA LENGKAP: KATA BENDA, KATA KERJA, KATA KETERANGAN, KATA SIFAT
+const vocabularyList = [
+    // ------------------- KATA BENDA (NOUNS) -------------------
+    { word: "Building", ipa: "/ˈbɪl.dɪŋ/", meaning: "Gedung / Bangunan", type: "Noun" },
+    { word: "Tree", ipa: "/triː/", meaning: "Pohon", type: "Noun" },
+    { word: "Tiger", ipa: "/ˈtaɪ.ɡɚ/", meaning: "Harimau / Macan", type: "Noun" },
+    { word: "Elephant", ipa: "/ˈel.ə.fənt/", meaning: "Gajah", type: "Noun" },
+    { word: "Bag", ipa: "/bæɡ/", meaning: "Tas", type: "Noun" },
+    { word: "Glass", ipa: "/ɡlæs/", meaning: "Gelas", type: "Noun" },
+    { word: "Bottle", ipa: "/ˈbɑː.t̬əl/", meaning: "Botol", type: "Noun" },
+    { word: "Boy", ipa: "/bɔɪ/", meaning: "Anak Laki-Laki", type: "Noun" },
+    { word: "Toy", ipa: "/tɔɪ/", meaning: "Mainan", type: "Noun" },
+    { word: "Classroom", ipa: "/ˈklæs.ruːm/", meaning: "Ruang Kelas", type: "Noun" },
+    { word: "Baby", ipa: "/ˈbeɪ.bi/", meaning: "Bayi", type: "Noun" },
+    { word: "Word", ipa: "/wɝːd/", meaning: "Kata", type: "Noun" },
+    { word: "English", ipa: "/ˈɪŋ.ɡlɪʃ/", meaning: "Bahasa Inggris", type: "Noun" },
+
+    // ------------------- KATA KERJA (VERBS) -------------------
+    { word: "Look", ipa: "/lʊk/", meaning: "Melihat", type: "Verb" },
+    { word: "Carry / Carrying", ipa: "/ˈkær.i.ɪŋ/", meaning: "Membawa", type: "Verb" },
+    { word: "Smile / Smiling", ipa: "/ˈsmaɪ.lɪŋ/", meaning: "Tersenyum", type: "Verb" },
+    { word: "Sleep / Sleeping", ipa: "/ˈsliː.pɪŋ/", meaning: "Tidur", type: "Verb" },
+    { word: "Match / Matching", ipa: "/mætʃ/", meaning: "Menjodohkan", type: "Verb" },
+
+    // ------------------- KATA KETERANGAN (ADVERBS) -------------------
+    { word: "Quietly", ipa: "/ˈkwaɪ.ət.li/", meaning: "Dengan Tenang / Hening", type: "Adverb" },
+    { word: "Correctly", ipa: "/kəˈrekt.li/", meaning: "Dengan Benar", type: "Adverb" },
+    { word: "Well", ipa: "/wel/", meaning: "Dengan Baik", type: "Adverb" },
+
+    // ------------------- KATA SIFAT (ADJECTIVES) -------------------
+    { word: "Low", ipa: "/loʊ/", meaning: "Rendah", type: "Adjective" },
+    { word: "High", ipa: "/haɪ/", meaning: "Tinggi", type: "Adjective" },
+    { word: "Weak", ipa: "/wiːk/", meaning: "Lemah", type: "Adjective" },
+    { word: "Quiet", ipa: "/ˈkwaɪ.ət/", meaning: "Tenang / Hening", type: "Adjective" },
+    { word: "Young", ipa: "/jʌŋ/", meaning: "Muda", type: "Adjective" },
+    { word: "New", ipa: "/nuː/", meaning: "Baru", type: "Adjective" },
+    { word: "Old", ipa: "/oʊld/", meaning: "Tua / Lama", type: "Adjective" },
+    { word: "Fresh", ipa: "/freʃ/", meaning: "Segar", type: "Adjective" },
+    { word: "Ancient", ipa: "/ˈeɪn.ʃənt/", meaning: "Kuno / Sangat Tua", type: "Adjective" },
+    { word: "Grown", ipa: "/ɡroʊn/", meaning: "Dewasa / Tumbuh", type: "Adjective" },
+    { word: "Heavy", ipa: "/ˈhev.i/", meaning: "Berat", type: "Adjective" },
+    { word: "Tiny", ipa: "/ˈtaɪ.ni/", meaning: "Kecil", type: "Adjective" },
+    { word: "Empty", ipa: "/ˈemp.ti/", meaning: "Kosong", type: "Adjective" },
+    { word: "Full", ipa: "/fʊl/", meaning: "Penuh", type: "Adjective" },
+    { word: "Wet", ipa: "/wet/", meaning: "Basah", type: "Adjective" },
+    { word: "Broken", ipa: "/ˈbroʊ.kən/", meaning: "Rusak / Pecah", type: "Adjective" },
+    { word: "Kind", ipa: "/kaɪnd/", meaning: "Baik Hati", type: "Adjective" },
+    { word: "Cruel", ipa: "/ˈkruː.əl/", meaning: "Kejam", type: "Adjective" },
+    { word: "Rude", ipa: "/ruːd/", meaning: "Kasar / Tidak Sopan", type: "Adjective" },
+    { word: "Mean", ipa: "/miːn/", meaning: "Jahat / Sombong", type: "Adjective" },
+    { word: "Perfect", ipa: "/ˈpɝː.fekt/", meaning: "Sempurna", type: "Adjective" },
+    { word: "Strong", ipa: "/strɑːŋ/", meaning: "Kuat", type: "Adjective" },
+    { word: "Messy", ipa: "/ˈmes.i/", meaning: "Berantakan", type: "Adjective" },
+    { word: "Dirty", ipa: "/ˈdɝː.ti/", meaning: "Kotor", type: "Adjective" },
+    { word: "Neat", ipa: "/niːt/", meaning: "Rapi", type: "Adjective" },
+    { word: "Noisy", ipa: "/ˈnɔɪ.zi/", meaning: "Bising / Ramai", type: "Adjective" },
+    { word: "Awake", ipa: "/əˈweɪk/", meaning: "Terbangun", type: "Adjective" },
+    { word: "Asleep", ipa: "/əˈsliːp/", meaning: "Tertidur", type: "Adjective" },
+    { word: "Active", ipa: "/ˈæk.tɪv/", meaning: "Aktif", type: "Adjective" },
+    { word: "Busy", ipa: "/ˈbɪz.i/", meaning: "Sibuk", type: "Adjective" },
+    { word: "Friendly", ipa: "/ˈfrend.li/", meaning: "Ramah", type: "Adjective" },
+    { word: "Polite", ipa: "/pəˈlaɪt/", meaning: "Sopan", type: "Adjective" },
+    { word: "Angry", ipa: "/ˈæŋ.ɡri/", meaning: "Marah", type: "Adjective" },
+    { word: "Silly", ipa: "/ˈsɪl.i/", meaning: "Bodoh / Konyol", type: "Adjective" },
+    { word: "Clever", ipa: "/ˈklev.ɚ/", meaning: "Pintar", type: "Adjective" },
+    { word: "Honest", ipa: "/ˈɑː.nɪst/", meaning: "Jujur", type: "Adjective" },
+    { word: "Diligent", ipa: "/ˈdɪl.ə.dʒənt/", meaning: "Rajin", type: "Adjective" },
+    { word: "Lazy", ipa: "/ˈleɪ.zi/", meaning: "Malas", type: "Adjective" },
+    { word: "Brave", ipa: "/breɪv/", meaning: "Berani", type: "Adjective" },
+    { word: "Modern", ipa: "/ˈmɑː.dɚn/", meaning: "Modern", type: "Adjective" },
+    { word: "Rich", ipa: "/rɪtʃ/", meaning: "Kaya", type: "Adjective" },
+    { word: "Poor", ipa: "/pʊr/", meaning: "Miskin", type: "Adjective" },
+    { word: "Generous", ipa: "/ˈdʒen.ər.əs/", meaning: "Dermawan", type: "Adjective" },
+    { word: "Healthy", ipa: "/ˈhel.θi/", meaning: "Sehat", type: "Adjective" },
+    { word: "Ill", ipa: "/ɪl/", meaning: "Sakit", type: "Adjective" },
+    { word: "Beautiful", ipa: "/ˈbjuː.t̬ə.fəl/", meaning: "Indah / Cantik", type: "Adjective" },
+    { word: "Terrible", ipa: "/ˈter.ə.bəl/", meaning: "Buruk / Mengerikan", type: "Adjective" },
+    { word: "Cute", ipa: "/kjuːt/", meaning: "Imut", type: "Adjective" },
+    { word: "Easy", ipa: "/ˈiː.zi/", meaning: "Mudah", type: "Adjective" },
+    { word: "Difficult", ipa: "/ˈdɪf.ə.kəlt/", meaning: "Sulit", type: "Adjective" },
+    { word: "Quick", ipa: "/kwɪk/", meaning: "Cepat", type: "Adjective" },
+    { word: "Safe", ipa: "/seɪf/", meaning: "Aman", type: "Adjective" },
+    { word: "Dangerous", ipa: "/ˈdeɪn.dʒɚ.əs/", meaning: "Berbahaya", type: "Adjective" },
+    { word: "Famous", ipa: "/ˈfeɪ.məs/", meaning: "Terkenal", type: "Adjective" },
+    { word: "Unknown", ipa: "/ʌnˈnoʊn/", meaning: "Tidak Dikenal", type: "Adjective" },
+    { word: "Lucky", ipa: "/ˈlʌk.i/", meaning: "Beruntung", type: "Adjective" }
+];
 
 const questionBank = [
     { type: "multiple", image: "gedung.jpg", text: "Look at the building. The building is _____.", options: ["Low", "High", "Weak", "Quiet"], answer: "High" },
@@ -414,7 +583,7 @@ const questionBank = [
     
     { type: "matching", text: "Jodohkan kata berikut dengan Bahasa Inggris yang tepat!", distractor: "Angry", pairs: [{ indonesia: "Ramah", english: "Friendly" }, { indonesia: "Sopan", english: "Polite" }] },
     { type: "matching", text: "Jodohkan kata berikut dengan Bahasa Inggris yang tepat!", distractor: "Honest", pairs: [{ indonesia: "Bodoh", english: "Silly" }, { indonesia: "Pintar", english: "Clever" }] },
-    { type: "matching", text: "Jodohkan kata berikut dengan Bahasa Inggris yang tepat!", distractor: "Brave", pairs: [{ indonesia: "Rajin", english: "Diligent" }, { indonesia: "Malas", english: "Lazy" }] },
+    { type: "matching", text: "Jodohkan kata berikut mengenai karakter!", distractor: "Brave", pairs: [{ indonesia: "Rajin", english: "Diligent" }, { indonesia: "Malas", english: "Lazy" }] },
     { type: "matching", text: "Jodohkan kata berikut dengan Bahasa Inggris yang tepat!", distractor: "Modern", pairs: [{ indonesia: "Muda", english: "Young" }, { indonesia: "Tua", english: "Ancient" }] },
     { type: "matching", text: "Jodohkan kata berikut dengan Bahasa Inggris yang tepat!", distractor: "Generous", pairs: [{ indonesia: "Kaya", english: "Rich" }, { indonesia: "Miskin", english: "Poor" }] },
     { type: "matching", text: "Jodohkan kata berikut dengan Bahasa Inggris yang tepat!", distractor: "Strong", pairs: [{ indonesia: "Sehat", english: "Healthy" }, { indonesia: "Sakit", english: "Ill" }] },
@@ -432,25 +601,21 @@ let correctCount = 0;
 const avatars = ["🌸", "🌷", "🌻", "🦋", "🌈", "🌺", "🏆"];
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
+// EFEK SUARA GAME
 function playSound(type) {
     if (type === 'correct') {
-        // Menggunakan suara tepuk tangan sintetis nada gembira anak-anak (aman & tanpa error internet)
         if (audioCtx.state === 'suspended') audioCtx.resume();
-        
-        let notes = [523.25, 659.25, 783.99, 1046.50]; // Nada chord gembira (C Major)
+        let notes = [523.25, 659.25, 783.99, 1046.50];
         notes.forEach((freq, index) => {
             setTimeout(() => {
                 const osc = audioCtx.createOscillator();
                 const gain = audioCtx.createGain();
                 osc.connect(gain);
                 gain.connect(audioCtx.destination);
-                
                 osc.type = 'triangle';
                 osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-                
                 gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
                 gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.4);
-                
                 osc.start();
                 osc.stop(audioCtx.currentTime + 0.4);
             }, index * 80);
@@ -461,7 +626,6 @@ function playSound(type) {
         const gain = audioCtx.createGain();
         osc.connect(gain);
         gain.connect(audioCtx.destination);
-        
         osc.type = 'sawtooth';
         osc.frequency.setValueAtTime(180, audioCtx.currentTime);
         osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.3);
@@ -469,6 +633,96 @@ function playSound(type) {
         gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
         osc.start(); osc.stop(audioCtx.currentTime + 0.3);
     }
+}
+
+// SUARA PENGUCAPAN BAHASA INGGRIS (TEXT TO SPEECH)
+function speakWord(word) {
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const cleanWord = word.split('/')[0].trim(); // Ambil kata utamanya jika ada garis miring
+        const utterance = new SpeechSynthesisUtterance(cleanWord);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.8;
+        window.speechSynthesis.speak(utterance);
+    } else {
+        alert("Browser Anda tidak mendukung fitur suara pengucapan.");
+    }
+}
+
+// RENDER KOSA KATA
+function renderVocabulary() {
+    const vocabGrid = document.getElementById('vocabGrid');
+    vocabGrid.innerHTML = '';
+    
+    // Sort A-Z
+    vocabularyList.sort((a,b) => a.word.localeCompare(b.word));
+
+    vocabularyList.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'vocab-card';
+        
+        let tagClass = 'tag-adjective';
+        if (item.type === 'Noun') tagClass = 'tag-noun';
+        else if (item.type === 'Verb') tagClass = 'tag-verb';
+        else if (item.type === 'Adverb') tagClass = 'tag-adverb';
+
+        card.innerHTML = `
+            <div class="vocab-info">
+                <div>
+                    <span class="vocab-word">${item.word}</span>
+                    <span class="vocab-tag ${tagClass}">${item.type}</span>
+                </div>
+                <div class="vocab-ipa">${item.ipa}</div>
+                <div class="vocab-meaning">${item.meaning}</div>
+            </div>
+            <button class="audio-btn" onclick="speakWord('${item.word}')" title="Dengarkan Suara">🔊</button>
+        `;
+        vocabGrid.appendChild(card);
+    });
+}
+
+// RENDER TAMPILAN SOAL UNTUK PRINT PDF
+function renderPrintQuestions() {
+    const printList = document.getElementById('printQuestionsList');
+    printList.innerHTML = '';
+    const labels = ['A', 'B', 'C', 'D'];
+
+    questionBank.forEach((q, index) => {
+        const item = document.createElement('div');
+        item.style.marginBottom = "15px";
+        item.style.textAlign = "left";
+
+        let optionsHTML = '';
+        if (q.type === 'multiple') {
+            optionsHTML = `<ul class="print-options-list">`;
+            q.options.forEach((opt, optIndex) => {
+                optionsHTML += `<li><b>${labels[optIndex]}.</b> ${opt}</li>`;
+            });
+            optionsHTML += `</ul>`;
+        } else if (q.type === 'matching') {
+            optionsHTML = `<div style="margin-top:5px; margin-left:15px;">`;
+            q.pairs.forEach(p => {
+                optionsHTML += `<div>• ${p.indonesia} = ......... (${p.english})</div>`;
+            });
+            optionsHTML += `</div>`;
+        }
+
+        item.innerHTML = `
+            <div style="font-weight: bold;">${index + 1}. ${q.text}</div>
+            ${optionsHTML}
+        `;
+        printList.appendChild(item);
+    });
+}
+
+function showVocabScreen() {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active-screen'));
+    document.getElementById('vocabScreen').classList.add('active-screen');
+}
+
+function showLoginScreen() {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active-screen'));
+    document.getElementById('loginScreen').classList.add('active-screen');
 }
 
 function triggerCelebration() {
@@ -508,7 +762,7 @@ async function fetchStudentNames() {
         }
     } catch (err) {
         console.error(err);
-        selectElem.innerHTML = '<option value="">-- Gagal Memuat --</option>';
+        selectElem.innerHTML = '<option value="">-- Gagal Memuat Nama --</option>';
         feedback.innerText = "Gagal terhubung ke Google Sheets.";
     }
 }
@@ -633,11 +887,11 @@ function checkAnswer(event) {
         correctCount += 1;
         playSound('correct');
         triggerCelebration();
-        feedback.innerText = "✨ Hebat! Semua jawaban benar!";
+        feedback.innerText = "✨ Hebat! Jawabanmu benar!";
         feedback.className = "feedback correct";
     } else {
         playSound('wrong');
-        feedback.innerText = "🌷 Ooo! Ada jawaban yang kurang tepat!";
+        feedback.innerText = "🌷 Ooo! Jawaban kurang tepat!";
         feedback.className = "feedback wrong";
         gameCard.classList.add('shake');
         setTimeout(() => gameCard.classList.remove('shake'), 400);
@@ -695,22 +949,16 @@ async function saveScoreToSheet(name, scoreValue) {
     }
 }
 
-/* =========================================
-   LOGIKA BINATANG REALISTIS DENGAN APLIKASI ANIMASI GERAK
-========================================= */
+/* ANIMASI BINATANG MELEWAT */
 const animalsDatabase = [
-    { icon: '🦋', motion: 'wing-flap' },     // Kupu-Kupu (Kepak Sayap)
-    { icon: '🦜', motion: 'wing-flap' },     // Burung (Kepak Sayap)
-    { icon: '🦉', motion: 'wing-flap' },     // Burung Hantu (Kepak Sayap)
-    { icon: '🐍', motion: 'snake-slither' },  // Ular (Meliuk Merayap)
-    { icon: '🐅', motion: 'limb-walk' },     // Macan (Jalan Beriringan)
-    { icon: '🦁', motion: 'limb-walk' },     // Singa (Langkah Kaki)
-    { icon: '🐱', motion: 'limb-walk' },     // Kucing (Langkah Kaki)
-    { icon: '🐈‍⬛', motion: 'limb-walk' },     // Kucing Hitam
-    { icon: '🐕', motion: 'limb-walk' },     // Anjing
-    { icon: '🐇', motion: 'limb-walk' },     // Kelinci (Melompat/Berjalan)
-    { icon: '🐒', motion: 'limb-walk' },     // Monyet
-    { icon: '🦖', motion: 'limb-walk' }      // Dinosaurus
+    { icon: '🦋', motion: 'wing-flap' },
+    { icon: '🦜', motion: 'wing-flap' },
+    { icon: '🦉', motion: 'wing-flap' },
+    { icon: '🐍', motion: 'snake-slither' },
+    { icon: '🐅', motion: 'limb-walk' },
+    { icon: '🦁', motion: 'limb-walk' },
+    { icon: '🐱', motion: 'limb-walk' },
+    { icon: '🐇', motion: 'limb-walk' }
 ];
 
 const directions = ['left-right', 'right-left', 'top-bottom'];
@@ -720,46 +968,40 @@ function spawnRandomAnimal() {
     const animalElem = document.getElementById('walkingAnimal');
     if (!wrapper || !animalElem) return;
 
-    // Reset Class & Inline Styles
     wrapper.className = 'walking-animal-wrapper';
     animalElem.className = 'walking-animal';
-    wrapper.style.top = '';
-    wrapper.style.left = '';
+    wrapper.style.top = ''; wrapper.style.left = '';
 
-    // Ambil hewan acak beserta jenis efek geraknya
     const randomAnimal = animalsDatabase[Math.floor(Math.random() * animalsDatabase.length)];
     const randomDir = directions[Math.floor(Math.random() * directions.length)];
     
     animalElem.innerText = randomAnimal.icon;
-    animalElem.classList.add(randomAnimal.motion); // Memasang animasi gerak realistis (sayap/kaki/ular)
+    animalElem.classList.add(randomAnimal.motion);
 
-    // Atur Posisi Lintasan
     if (randomDir === 'left-right' || randomDir === 'right-left') {
-        const randomTop = Math.floor(Math.random() * 45) + 15; // Lintasan melintas kotak (15vh - 60vh)
+        const randomTop = Math.floor(Math.random() * 45) + 15;
         wrapper.style.top = `${randomTop}vh`;
         wrapper.classList.add(`animate-${randomDir}`);
     } else if (randomDir === 'top-bottom') {
-        const randomLeft = Math.floor(Math.random() * 40) + 30; // Melintas vertikal (30vw - 70vw)
+        const randomLeft = Math.floor(Math.random() * 40) + 30;
         wrapper.style.left = `${randomLeft}vw`;
         wrapper.classList.add('animate-top-bottom');
     }
 
-    // Durasi Jalan (3.5s - 5.5s)
     const duration = (Math.random() * 2 + 3.5).toFixed(1);
     wrapper.style.animationDuration = `${duration}s`;
 
-    // Reset setelah selesai melintas dan jadwalkan pemunculan berikutnya
     setTimeout(() => {
         wrapper.className = 'walking-animal-wrapper';
         animalElem.className = 'walking-animal';
-        
         const nextDelay = Math.floor(Math.random() * (9000 - 3500 + 1)) + 3500;
         setTimeout(spawnRandomAnimal, nextDelay);
-
     }, duration * 1000);
 }
 
 window.onload = () => {
+    renderVocabulary();
+    renderPrintQuestions();
     fetchStudentNames();
     setTimeout(spawnRandomAnimal, 2000);
 };
